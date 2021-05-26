@@ -26,8 +26,10 @@ import (
 )
 
 // ShareManagerLister helps list ShareManagers.
+// All objects returned here must be treated as read-only.
 type ShareManagerLister interface {
 	// List lists all ShareManagers in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.ShareManager, err error)
 	// ShareManagers returns an object that can list and get ShareManagers.
 	ShareManagers(namespace string) ShareManagerNamespaceLister
@@ -58,10 +60,13 @@ func (s *shareManagerLister) ShareManagers(namespace string) ShareManagerNamespa
 }
 
 // ShareManagerNamespaceLister helps list and get ShareManagers.
+// All objects returned here must be treated as read-only.
 type ShareManagerNamespaceLister interface {
 	// List lists all ShareManagers in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.ShareManager, err error)
 	// Get retrieves the ShareManager from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1beta1.ShareManager, error)
 	ShareManagerNamespaceListerExpansion
 }

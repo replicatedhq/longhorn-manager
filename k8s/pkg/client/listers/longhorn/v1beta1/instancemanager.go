@@ -26,8 +26,10 @@ import (
 )
 
 // InstanceManagerLister helps list InstanceManagers.
+// All objects returned here must be treated as read-only.
 type InstanceManagerLister interface {
 	// List lists all InstanceManagers in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.InstanceManager, err error)
 	// InstanceManagers returns an object that can list and get InstanceManagers.
 	InstanceManagers(namespace string) InstanceManagerNamespaceLister
@@ -58,10 +60,13 @@ func (s *instanceManagerLister) InstanceManagers(namespace string) InstanceManag
 }
 
 // InstanceManagerNamespaceLister helps list and get InstanceManagers.
+// All objects returned here must be treated as read-only.
 type InstanceManagerNamespaceLister interface {
 	// List lists all InstanceManagers in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.InstanceManager, err error)
 	// Get retrieves the InstanceManager from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1beta1.InstanceManager, error)
 	InstanceManagerNamespaceListerExpansion
 }

@@ -26,8 +26,10 @@ import (
 )
 
 // NodeLister helps list Nodes.
+// All objects returned here must be treated as read-only.
 type NodeLister interface {
 	// List lists all Nodes in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.Node, err error)
 	// Nodes returns an object that can list and get Nodes.
 	Nodes(namespace string) NodeNamespaceLister
@@ -58,10 +60,13 @@ func (s *nodeLister) Nodes(namespace string) NodeNamespaceLister {
 }
 
 // NodeNamespaceLister helps list and get Nodes.
+// All objects returned here must be treated as read-only.
 type NodeNamespaceLister interface {
 	// List lists all Nodes in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.Node, err error)
 	// Get retrieves the Node from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1beta1.Node, error)
 	NodeNamespaceListerExpansion
 }

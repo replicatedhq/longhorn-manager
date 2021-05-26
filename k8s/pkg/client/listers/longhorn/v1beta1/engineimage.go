@@ -26,8 +26,10 @@ import (
 )
 
 // EngineImageLister helps list EngineImages.
+// All objects returned here must be treated as read-only.
 type EngineImageLister interface {
 	// List lists all EngineImages in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.EngineImage, err error)
 	// EngineImages returns an object that can list and get EngineImages.
 	EngineImages(namespace string) EngineImageNamespaceLister
@@ -58,10 +60,13 @@ func (s *engineImageLister) EngineImages(namespace string) EngineImageNamespaceL
 }
 
 // EngineImageNamespaceLister helps list and get EngineImages.
+// All objects returned here must be treated as read-only.
 type EngineImageNamespaceLister interface {
 	// List lists all EngineImages in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.EngineImage, err error)
 	// Get retrieves the EngineImage from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1beta1.EngineImage, error)
 	EngineImageNamespaceListerExpansion
 }

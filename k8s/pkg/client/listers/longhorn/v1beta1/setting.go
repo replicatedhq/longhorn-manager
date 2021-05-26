@@ -26,8 +26,10 @@ import (
 )
 
 // SettingLister helps list Settings.
+// All objects returned here must be treated as read-only.
 type SettingLister interface {
 	// List lists all Settings in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.Setting, err error)
 	// Settings returns an object that can list and get Settings.
 	Settings(namespace string) SettingNamespaceLister
@@ -58,10 +60,13 @@ func (s *settingLister) Settings(namespace string) SettingNamespaceLister {
 }
 
 // SettingNamespaceLister helps list and get Settings.
+// All objects returned here must be treated as read-only.
 type SettingNamespaceLister interface {
 	// List lists all Settings in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.Setting, err error)
 	// Get retrieves the Setting from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1beta1.Setting, error)
 	SettingNamespaceListerExpansion
 }

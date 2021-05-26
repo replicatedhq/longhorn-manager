@@ -26,8 +26,10 @@ import (
 )
 
 // ReplicaLister helps list Replicas.
+// All objects returned here must be treated as read-only.
 type ReplicaLister interface {
 	// List lists all Replicas in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.Replica, err error)
 	// Replicas returns an object that can list and get Replicas.
 	Replicas(namespace string) ReplicaNamespaceLister
@@ -58,10 +60,13 @@ func (s *replicaLister) Replicas(namespace string) ReplicaNamespaceLister {
 }
 
 // ReplicaNamespaceLister helps list and get Replicas.
+// All objects returned here must be treated as read-only.
 type ReplicaNamespaceLister interface {
 	// List lists all Replicas in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.Replica, err error)
 	// Get retrieves the Replica from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1beta1.Replica, error)
 	ReplicaNamespaceListerExpansion
 }

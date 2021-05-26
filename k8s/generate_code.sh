@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 APIS_DIR="github.com/longhorn/longhorn-manager/k8s/pkg/apis/longhorn"
 VERSION="v1beta1"
 APIS_VERSION_DIR="${APIS_DIR}/${VERSION}"

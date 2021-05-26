@@ -26,8 +26,10 @@ import (
 )
 
 // BackingImageManagerLister helps list BackingImageManagers.
+// All objects returned here must be treated as read-only.
 type BackingImageManagerLister interface {
 	// List lists all BackingImageManagers in the indexer.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.BackingImageManager, err error)
 	// BackingImageManagers returns an object that can list and get BackingImageManagers.
 	BackingImageManagers(namespace string) BackingImageManagerNamespaceLister
@@ -58,10 +60,13 @@ func (s *backingImageManagerLister) BackingImageManagers(namespace string) Backi
 }
 
 // BackingImageManagerNamespaceLister helps list and get BackingImageManagers.
+// All objects returned here must be treated as read-only.
 type BackingImageManagerNamespaceLister interface {
 	// List lists all BackingImageManagers in the indexer for a given namespace.
+	// Objects returned here must be treated as read-only.
 	List(selector labels.Selector) (ret []*v1beta1.BackingImageManager, err error)
 	// Get retrieves the BackingImageManager from the indexer for a given namespace and name.
+	// Objects returned here must be treated as read-only.
 	Get(name string) (*v1beta1.BackingImageManager, error)
 	BackingImageManagerNamespaceListerExpansion
 }
