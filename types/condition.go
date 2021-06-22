@@ -1,10 +1,10 @@
 package types
 
 import (
+	"time"
+
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/tools/record"
-
-	"github.com/longhorn/longhorn-manager/util"
 )
 
 // GetCondition returns a copy of conditions[conditionType], and automatically fill the unknown condition
@@ -44,7 +44,7 @@ func SetCondition(originConditions map[string]Condition, conditionType string, c
 	}
 	condition := GetCondition(conditions, conditionType)
 	if condition.Status != conditionValue {
-		condition.LastTransitionTime = util.Now()
+		condition.LastTransitionTime = time.Now().UTC().Format(time.RFC3339)
 	}
 	condition.Status = conditionValue
 	condition.Reason = reason

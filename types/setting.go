@@ -13,8 +13,6 @@ import (
 	"gopkg.in/yaml.v2"
 
 	v1 "k8s.io/api/core/v1"
-
-	"github.com/longhorn/longhorn-manager/util"
 )
 
 const (
@@ -762,7 +760,7 @@ func ValidateInitSetting(name, value string) (err error) {
 			return fmt.Errorf("value %v is not a number", value)
 		}
 		// additional check whether over provisioning percentage is positive
-		value, err := util.ConvertSize(value)
+		value, err := ConvertSize(value)
 		if err != nil || value < 0 {
 			return fmt.Errorf("value %v should be positive", value)
 		}
@@ -771,7 +769,7 @@ func ValidateInitSetting(name, value string) (err error) {
 			return fmt.Errorf("value %v is not a number", value)
 		}
 		// additional check whether minimal available percentage is between 0 to 100
-		value, err := util.ConvertSize(value)
+		value, err := ConvertSize(value)
 		if err != nil || value < 0 || value > 100 {
 			return fmt.Errorf("value %v should between 0 to 100", value)
 		}
